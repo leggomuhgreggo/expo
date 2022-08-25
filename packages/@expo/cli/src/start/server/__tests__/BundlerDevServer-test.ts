@@ -34,12 +34,10 @@ beforeAll(() => {
 
 beforeEach(() => {
   vol.reset();
-  delete process.env.EXPO_ENABLE_INTERSTITIAL_PAGE;
 });
 
 afterAll(() => {
   process.chdir(originalCwd);
-  delete process.env.EXPO_ENABLE_INTERSTITIAL_PAGE;
 });
 
 class MockBundlerDevServer extends BundlerDevServer {
@@ -173,7 +171,6 @@ describe('stopAsync', () => {
 
 describe('getExpoGoUrl', () => {
   it(`gets the interstitial page URL`, async () => {
-    process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
     vol.fromJSON(
       {
         'node_modules/expo-dev-launcher/package.json': '',
