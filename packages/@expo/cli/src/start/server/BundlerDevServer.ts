@@ -8,6 +8,7 @@ import { APISettings } from '../../api/settings';
 import * as Log from '../../log';
 import { FileNotifier } from '../../utils/FileNotifier';
 import { resolveWithTimeout } from '../../utils/delay';
+import { env } from '../../utils/env';
 import { CommandError } from '../../utils/errors';
 import { learnMore } from '../../utils/link';
 import {
@@ -402,6 +403,7 @@ export abstract class BundlerDevServer {
   /** Should use the interstitial page for selecting which runtime to use. */
   protected shouldUseInterstitialPage(isDevelopmentBuildInstalled: boolean = true): boolean {
     return (
+      !env.EXPO_NO_REDIRECT_PAGE &&
       isDevelopmentBuildInstalled &&
       // if user passed --dev-client flag, skip interstitial page
       !this.isDevClient &&
